@@ -3,6 +3,7 @@
 #include <string.h>
 
 #define MAX 5
+#define WRONG_INPUT "Nespravny vstup\n"
 
 /* Structure for a single product - name and count of sold product */
 typedef struct {
@@ -18,7 +19,6 @@ int readTop ( int * number ) {
 }
 
 int main ( ) { 
-    PRODUCT pr;
 /*    if ( scanf ( "%5s", pr.m_Nazev ) != 1 || strln (pr.m_Nazev ) > 4  ) {
         printf ( "Nespravny vstup.\n");
         return 1;
@@ -32,10 +32,28 @@ int main ( ) {
     top = readTop ( &top );
     printf ( "Pozadavky\n" );
 
-    
+    char c; /** depends on the first character input what will program do */
+    while  ( 1 ) {
+        if ( !readAction ( &c ) ) {
+            printf ( WRONG_INPUT );
+            return 1;
+        }
 
+        if ( c == '+' ) {
+            if ( !addProduct ( ) )
+            return 1;
+        }
+        
+        if ( c == '?' ) {
+            if ( !printCntAll ( ) )
+            return 1;
+        }
 
-
+        if ( c == '#' ) {
+            if ( !printCntAll ( ) )
+            return 1;
+        }
+    }
 }
 
 
